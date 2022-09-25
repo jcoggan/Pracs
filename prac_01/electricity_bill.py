@@ -13,8 +13,8 @@ estimated_bill = (price_per_kWh * daily_usage * billing_period)
 display estimated_bill in $
 """
 
-price_per_kWh = int(input())
-daily_usage =
-billing_period =
+price_per_kWh = int(input("price per kWh: "))
+daily_usage = int(input("daily usage: "))
+billing_period = int(input("billing period: "))
 estimated_bill = (price_per_kWh * daily_usage * billing_period)
-display estimated_bill in $
+print(f"Estimated_bill ${estimated_bill}")

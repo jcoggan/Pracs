@@ -17,20 +17,30 @@ while choice != Q
 display finished message
 """
 
-name = input("Name: ")
-print("(H)ello")
-print("(G)oodbye")
-print("(Q)uit")
-choice = input(">>> ").upper()
-while choice != "Q":
-    if choice == "H":
-       print(f"Hello {name}")
-    elif choice == "G":
-       print(f"goodbye {name}")
-    else:
-       print("invalid message")
+def main():
+    name = input("Name: ")
+    get_choice(name)
+    print("FInished")
+
+
+def get_choice(name):
+    print_menu()
+    choice = input(">>> ").upper()
+    while choice != "Q":
+        if choice == "H":
+            print(f"Hello {name}")
+        elif choice == "G":
+            print(f"goodbye {name}")
+        else:
+            print("invalid message")
+        print_menu()
+        choice = input(">>> ").upper()
+
+
+def print_menu():
     print("(H)ello")
     print("(G)oodbye")
     print("(Q)uit")
-    choice = input(">>> ").upper()
-print("FInished")
+
+
+main()
