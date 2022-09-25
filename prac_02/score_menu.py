@@ -1,5 +1,5 @@
 def main():
-    """gets a score then can show result and print stars"""
+    """Gets a score then can show result and print stars"""
     score = get_valid_score()
     print_menu()
     choice = input("Choice: ").lower()
