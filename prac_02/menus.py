@@ -18,12 +18,14 @@ display finished message
 """
 
 def main():
+    """respond to user using inputted name based on choice form menu"""
     name = input("Name: ")
     get_choice(name)
     print("FInished")
 
 
 def get_choice(name):
+    """Responds to user based on input"""
     print_menu()
     choice = input(">>> ").upper()
     while choice != "Q":
@@ -38,6 +40,7 @@ def get_choice(name):
 
 
 def print_menu():
+    """Displayes menu"""
     print("(H)ello")
     print("(G)oodbye")
     print("(Q)uit")
