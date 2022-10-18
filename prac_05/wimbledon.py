@@ -1,9 +1,8 @@
 """
 wimbledon
 Estimate: 50 minutes
-Actual: ? minutes
+Actual: 41.5 minutes
 """
-# Year	Country	Champion	Country	Runner-up	Score in the final
 FILENAME = "wimbledon.csv"
 COUNTRY_INDEX = 1
 CHAMPION_INDEX = 2
@@ -35,6 +34,14 @@ def process_records(records):
         except KeyError:
             champion_to_wins[record[CHAMPION_INDEX]] = 1
     return champion_to_wins, countries
+
+
+def display_processed_records(champion_to_wins, countries):
+    print("Wimbledon Champions:")
+    for champion, wins in champion_to_wins.items():
+        print(champion, wins)
+    print(f"\nThese {len(countries)} countries have won wimbledon:")
+    print(",".join(sorted(countries)))
 
 
 main()
