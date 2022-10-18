@@ -4,11 +4,13 @@ Estimate: 30 minutes
 Actual: ? minutes
 """
 
-words = {}
-text = input("Text:")
+word_to_occurrences = {}
+text = input("Text: ")
 for word in text.split(" "):
-    if word in words:
-        words[word] = words[word] + 1
+    if word in word_to_occurrences:
+        word_to_occurrences[word] = word_to_occurrences[word] + 1
     else:
-        words[word] = 1
-print(words)
+        word_to_occurrences[word] = 1
+
+for word in word_to_occurrences:
+    print(f"{word} : {word_to_occurrences[word]}")
