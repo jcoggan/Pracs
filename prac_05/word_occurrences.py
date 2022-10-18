@@ -9,7 +9,7 @@ longest_word_length = 0
 text = input("Text: ")
 for word in text.split(" "):
     if word in word_to_occurrences:
-        word_to_occurrences[word] = word_to_occurrences[word] + 1
+        word_to_occurrences[word] += 1
     else:
         word_to_occurrences[word] = 1
     if len(word) > longest_word_length:
