@@ -29,7 +29,7 @@ def main():
         elif choice == "f":
             filter_project()
         elif choice == "a":
-            add_project()
+            add_project(projects)
         elif choice == "u":
             update_project()
         else:
@@ -48,10 +48,10 @@ def load_project(filename):
             project_bits[INDEX_PRIORITY] = int(project_bits[INDEX_PRIORITY])
             project_bits[INDEX_COST_ESTIMATE] = float(project_bits[INDEX_COST_ESTIMATE])
             project_bits[INDEX_COMPLETION_PERCENTAGE] = int(project_bits[INDEX_COMPLETION_PERCENTAGE])
-            print(project_bits)
             # project_bits[INDEX_START_DATE] = datetime.datetime.strptime(project_bits[INDEX_START_DATE],
             #                                                             "%d/%m/%Y").date()
-            projects.append(Project(project_bits[INDEX_NAME], project_bits[INDEX_START_DATE], project_bits[INDEX_PRIORITY],
+            projects.append(
+                Project(project_bits[INDEX_NAME], project_bits[INDEX_START_DATE], project_bits[INDEX_PRIORITY],
                         project_bits[INDEX_COST_ESTIMATE], project_bits[INDEX_COMPLETION_PERCENTAGE]))
         return projects
 
@@ -65,6 +65,7 @@ def save_project(filename, projects):
 
 
 def display(projects):
+    """Displays projects in order of priority and splits them by completion"""
     print("Incomplete projects:")
     for project in (project for project in sorted(projects) if not project.is_complete()):
         print(project)
@@ -77,8 +78,14 @@ def filter_project():
     pass
 
 
-def add_project():
-    pass
+def add_project(projects):
+    """Add a new project"""
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yy): ")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: $"))
+    complete_percentage = int(input("Percent complete: "))
+    projects.append(Project(name, start_date, priority, cost_estimate, complete_percentage))
 
 
 def update_project():
