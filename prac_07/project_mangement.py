@@ -47,14 +47,16 @@ def load_project(filename):
             # project_bits[INDEX_START_DATE] = datetime.datetime.strptime(project_bits[INDEX_START_DATE],
             #                                                             "%d/%m/%Y").date()
             projects.append(Project(project_bits[INDEX_NAME], project_bits[INDEX_START_DATE], project_bits[INDEX_PRIORITY],
-                              project_bits[INDEX_COST_ESTIMATE], project_bits[INDEX_COMPLETION_PERCENTAGE]))
+                        project_bits[INDEX_COST_ESTIMATE], project_bits[INDEX_COMPLETION_PERCENTAGE]))
         return projects
-
 
 
 def save_project(filename, projects):
     """saves a project to a file"""
-    pass
+    with open(filename, "w", encoding="utf8") as out_file:
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion\tPercentage", file=out_file)
+        for project in projects:
+            print(project, file=out_file)
 
 
 def display():
