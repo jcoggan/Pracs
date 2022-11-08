@@ -1,19 +1,29 @@
 import datetime
-from prac_07.project.py import Project
+from prac_07.project import Project
 
 MENU = " - (L)oad projects\n - (S)ave projects\n - (D)isplay projects\n - (F)ilter projects by date\n" \
        " - (A)dd new project\n - (U)pdate project\n - (Q)uit"
 FILENAME = "project.txt"
+INDEX_NAME = 0
+INDEX_START_DATE = 1
+INDEX_PRIORITY = 2
+INDEX_COST_ESTIMATE = 3
+INDEX_COMPLETION_PERCENTAGE = -1
 
 
 def main():
+    projects = []
     print(MENU)
     choice = input(">>> ").lower()
     while choice != "q":
         if choice == "l":
-            load_project(filename)
+            # filename = input("filename: ")
+            filename = "project.txt"
+            projects = load_project(filename)
         elif choice == "s":
-            save_project()
+            # filename = input("filename: ")
+            filename = "project.txt"
+            save_project(filename, projects)
         elif choice == "d":
             display()
         elif choice == "f":
@@ -28,11 +38,39 @@ def main():
 
 
 def load_project(filename):
-    with open(filename, "r") as in_file:
+    """Loads a projects from a file"""
+    projects = []
+    with open(filename, "r", encoding="utf8") as in_file:
         in_file.readline()
         for line in in_file:
+            project_bits = line.strip("\n").split("\t")
+            # project_bits[INDEX_START_DATE] = datetime.datetime.strptime(project_bits[INDEX_START_DATE],
+            #                                                             "%d/%m/%Y").date()
+            projects.append(Project(project_bits[INDEX_NAME], project_bits[INDEX_START_DATE], project_bits[INDEX_PRIORITY],
+                              project_bits[INDEX_COST_ESTIMATE], project_bits[INDEX_COMPLETION_PERCENTAGE]))
+        return projects
 
 
+
+def save_project(filename, projects):
+    """saves a project to a file"""
+    pass
+
+
+def display():
+    pass
+
+
+def filter_project():
+    pass
+
+
+def add_project():
+    pass
+
+
+def update_project():
+    pass
 
 
 main()
