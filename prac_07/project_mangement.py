@@ -12,7 +12,7 @@ INDEX_COMPLETION_PERCENTAGE = -1
 
 
 def main():
-    projects = []
+    projects = load_project(FILENAME)
     print(MENU)
     choice = input(">>> ").lower()
     while choice != "q":
@@ -25,7 +25,7 @@ def main():
             filename = "project.txt"
             save_project(filename, projects)
         elif choice == "d":
-            display()
+            display(projects)
         elif choice == "f":
             filter_project()
         elif choice == "a":
@@ -35,6 +35,7 @@ def main():
         else:
             print("error")
         choice = input(">>> ").lower()
+    save_project(FILENAME, projects)
 
 
 def load_project(filename):
@@ -44,6 +45,10 @@ def load_project(filename):
         in_file.readline()
         for line in in_file:
             project_bits = line.strip("\n").split("\t")
+            project_bits[INDEX_PRIORITY] = int(project_bits[INDEX_PRIORITY])
+            project_bits[INDEX_COST_ESTIMATE] = float(project_bits[INDEX_COST_ESTIMATE])
+            project_bits[INDEX_COMPLETION_PERCENTAGE] = int(project_bits[INDEX_COMPLETION_PERCENTAGE])
+            print(project_bits)
             # project_bits[INDEX_START_DATE] = datetime.datetime.strptime(project_bits[INDEX_START_DATE],
             #                                                             "%d/%m/%Y").date()
             projects.append(Project(project_bits[INDEX_NAME], project_bits[INDEX_START_DATE], project_bits[INDEX_PRIORITY],
@@ -59,8 +64,13 @@ def save_project(filename, projects):
             print(project, file=out_file)
 
 
-def display():
-    pass
+def display(projects):
+    print("Incomplete projects:")
+    for project in (project for project in sorted(projects) if not project.is_complete()):
+        print(project)
+    print("Completed projects:")
+    for project in (project for project in sorted(projects) if project.is_complete()):
+        print(project)
 
 
 def filter_project():

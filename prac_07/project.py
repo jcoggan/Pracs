@@ -9,3 +9,12 @@ class Project:
     def __str__(self):
         return f"{self.name}\t {self.start_date}\t {self.priority}\t" \
                f" {self.cost_estimate}\t {self.completion_percentage}"
+
+    def is_complete(self):
+        """determines if a projects' completion is at 100%"""
+        if self.completion_percentage == 100:
+            return True
+        return False
+
+    def __gt__(self, other):
+        return self.priority > other.priority
