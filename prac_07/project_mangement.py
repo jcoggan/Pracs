@@ -27,7 +27,7 @@ def main():
         elif choice == "d":
             display(projects)
         elif choice == "f":
-            filter_project()
+            filter_project(projects)
         elif choice == "a":
             add_project(projects)
         elif choice == "u":
@@ -48,8 +48,8 @@ def load_project(filename):
             project_bits[INDEX_PRIORITY] = int(project_bits[INDEX_PRIORITY])
             project_bits[INDEX_COST_ESTIMATE] = float(project_bits[INDEX_COST_ESTIMATE])
             project_bits[INDEX_COMPLETION_PERCENTAGE] = int(project_bits[INDEX_COMPLETION_PERCENTAGE])
-            # project_bits[INDEX_START_DATE] = datetime.datetime.strptime(project_bits[INDEX_START_DATE],
-            #                                                             "%d/%m/%Y").date()
+            project_bits[INDEX_START_DATE] = datetime.datetime.strptime(project_bits[INDEX_START_DATE],
+                                                                        "%d/%m/%Y").date()
             projects.append(
                 Project(project_bits[INDEX_NAME], project_bits[INDEX_START_DATE], project_bits[INDEX_PRIORITY],
                         project_bits[INDEX_COST_ESTIMATE], project_bits[INDEX_COMPLETION_PERCENTAGE]))
@@ -74,8 +74,12 @@ def display(projects):
         print(project)
 
 
-def filter_project():
-    pass
+def filter_project(projects):
+    """Displays projects after an inputted date"""
+    date_string = input("Date (d/m/yyyy): ")
+    filter_date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    for project in (project for project in projects if project.start_date > filter_date):
+        print(project)
 
 
 def add_project(projects):
