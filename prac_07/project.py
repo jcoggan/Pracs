@@ -7,8 +7,8 @@ class Project:
         self.completion_percentage = completion_percentage
 
     def __str__(self):
-        return f"{self.name}\t {self.start_date}\t {self.priority}\t" \
-               f" {self.cost_estimate}\t {self.completion_percentage}"
+        return f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}, priority {self.priority}" \
+               f", estimate: ${self.cost_estimate:.2f}, completion: {self.completion_percentage}%"
 
     def is_complete(self):
         """determines if a projects' completion is at 100%"""
@@ -17,4 +17,6 @@ class Project:
         return False
 
     def __gt__(self, other):
-        return self.priority > other.priority
+        return self.priority > other.priority or self.start_date > other.start_date
+
+
