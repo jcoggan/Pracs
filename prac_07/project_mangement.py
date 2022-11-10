@@ -38,6 +38,7 @@ def main():
     save_project(FILENAME, projects)
     print("Thank you for using custom-built project management software.")
 
+
 def load_project(filename):
     """Loads a projects from a file"""
     projects = []
