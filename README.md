@@ -1,7 +1,9 @@
 # README
 
 ## About
+
 Practicals for CP1404 by Jaiden Coggan 1st year IT student.
+
 ## 3 Main Lessons about "Clean Code"
 
 - Good Names
