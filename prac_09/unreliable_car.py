@@ -1,7 +1,5 @@
-import random
-
 from prac_09.car import Car
-from random import randint
+import random
 
 
 class UnreliableCar(Car):
